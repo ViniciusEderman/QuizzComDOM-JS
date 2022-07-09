@@ -12,17 +12,18 @@
 <body>
     <h1 id="main-title">Jogo de Perguntas e Respostas</h1>
     <!-- Score Board -->
-    <div id="score-container">
+    <div id="score-container" class="hide">
+        <h2>Parabéns!!!</h2>
         <p id="display-score"><span>90</span>%</p>
-        <p>Você acertou <span id="correct-answer"></span> de <span id="questions-qty"></span> perguntas</p>
+        <p>Você acertou <span id="correct-answers">0</span> de <span id="questions-qty">10</span> perguntas</p>
         <button id="restart">Recomeçar o Jogo</button>
     </div>
     <!-- Quizz Container -->
     <div id="quizz-container">
         <p id="question"><span id="question-number">1</span><span id="question-text">Qual o comando para baixar o express no seu projeto?</span></p>
         <div id="answers-box">
-            <button class="correct-answer"><span class="btn-letter">a</span> <span class="question-answer">npm i express</span></button>
-            <button class="wrong-answer"><span class="btn-letter">b</span> <span class="question-answer">npm init</span></button>
+            <button><span class="btn-letter">a</span> <span class="question-answer">npm i express</span></button>
+            <button><span class="btn-letter">b</span> <span class="question-answer">npm init</span></button>
             <button><span class="btn-letter">c</span> <span class="question-answer">npm start express</span></button>
             <button><span class="btn-letter">d</span> <span class="question-answer">install express.node</span></button>
         </div>
