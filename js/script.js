@@ -84,7 +84,7 @@ function init() {
   // Cria uma pergunta
 function createQuestion(i) {
     // Limpar a questão anterior
-    const oldButtons = answersBox.querySelectorAll("button");
+    const oldButtons = answersBox.querySelectorAll("button"); // não está pegando conteúdo ({fazer alteração}search bug)
     oldButtons.forEach(function(btn) {
         btn.remove();
     });
