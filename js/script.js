@@ -1,7 +1,6 @@
 // var's:
 const question = document.querySelector("#question");
 const answersBox = document.querySelector("#answers-box");
-console.log(answersBox);
 const quizzContainer = document.querySelector("#quizz-container");
 const scoreContainer = document.querySelector("#score-container");
 const letters = ["a", "b", "c", "d"];
@@ -94,6 +93,93 @@ function createQuestion(i) {
     const questionNumber = question.querySelector("#question-number");
     questionText.textContent = questions[i].question;
     questionNumber.textContent = i + 1;
+
+    questions[i].answers.forEach(function(answer, i) {
+      //template do botão(quizz)
+      const answerTemplate = document.querySelector(".answer-template").cloneNode(true);
+      const letterBtn = answerTemplate.querySelector(".btn-letter");
+      const answerText = answerTemplate.querySelector(".question-answer");
+
+      letterBtn.textContent = letters[i];
+      answerText.textContent = answer['answer'];
+      answerTemplate.setAttribute("correct-answer", answer["correct"]);
+
+      // removendo hide e template class
+      answerTemplate.classList.remove("hide");
+      answerTemplate.classList.remove("answer-template");
+
+      // inserir a alternativa na tela:
+      answersBox.appendChild(answerTemplate);
+
+      // evento de click no buttom:
+      answerTemplate.addEventListener("click", function() {
+        checkAnswer(this);
+      });
+    });
+
+    //incrementar o número das questões:
+    actualQuestion++;
 }
+
+// Verificando a resposta do usuário:
+function checkAnswer(btn) {
+  const buttons = answersBox.querySelectorAll("button");
+
+  buttons.forEach((button) => {
+    if(button.getAttribute("correct-answer") === "true") {
+      button.classList.add("correct-answer");
+      if(btn === button) {
+        points++;
+      }
+    }
+    else {
+      button.classList.add("wrong-answer");
+    }
+  });
+  nextQuestion();
+}
+
+function nextQuestion() {
+  setTimeout(() => {
+    if(actualQuestion >= questions.length) {
+      showSuccessMessage();
+      return;
+    }
+    createQuestion(actualQuestion);
+  }, 700);
+}
+
+// exibe a tela final:
+function showSuccessMessage() {
+  hideOrShowQuizz();
+
+  //manipulando o score(depende de quantas questões forem acertadas):
+  const score = ((points / questions.length) * 100).toFixed(2);
+  const displayScore = document.querySelector("#display-score span");
+
+  displayScore.textContent = score.toString();
+
+  // numero de perguntas corretas:
+  const correctAnswers = document.querySelector("#correct-answers");
+  correctAnswers.textContent = points;
+
+  // alterar o total de perguntas:
+  const totalQuestions = document.querySelector("#questions-qty");
+  totalQuestions.textContent = question.length;
+}
+
+function hideOrShowQuizz() {
+  quizzContainer.classList.toggle("hide");
+  scoreContainer.classList.toggle("hide");
+}
+
+// Restartar o jogo:
+const restartGame = document.querySelector("#restart");
+restartGame.addEventListener("click", function() {
+  actualQuestion = 0; // zerando as questões
+  points = 0; // zerando os pontos
+  hideOrShowQuizz();
+  init(); // recomeçando o jogo
+});
 
 init();
