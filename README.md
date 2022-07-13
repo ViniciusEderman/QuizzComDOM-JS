@@ -38,4 +38,5 @@
       ]
     }
 # Observação: 
-    O correct = true, quer dizer que é alternativa correta da pergunta, e false são as erradas
+    O correct = true, quer dizer que é a alternativa correta da pergunta e false são as erradas.
+    Você pode adicionar mais alternativas, porém isso pode prejudicar a estetica do projeto!
