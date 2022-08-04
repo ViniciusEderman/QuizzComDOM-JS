@@ -74,6 +74,27 @@ const questions = [
         },
       ]
     },
+    {
+      "question": "Qual a linguagem predominante no Youtube?",
+      "answers": [
+        {
+          "answer": "JavaScript",
+          "correct": true
+        },
+        {
+          "answer": "C#",
+          "correct": false
+        },
+        {
+          "answer": "Python",
+          "correct": false
+        },
+        {
+          "answer": "Java",
+          "correct": false
+        },
+      ]
+    }
   ]
 
 function init() {
